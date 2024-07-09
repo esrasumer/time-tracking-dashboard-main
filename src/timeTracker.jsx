@@ -1,17 +1,22 @@
-import UserInfo from "./components/userInfo/UserInfo";
-import Time from "./components/time/time"
+import React, { useState } from "react";
+import UserInfo from "./component/userInfo/userInfo";
+import Time from "./component/time/time";
+import TabContent from "./component/tabContent/tabContent";
 
-export default function TimeTracker() {
+const TimeTracker = () => {
+    const [activeTab, setActiveTab] = useState('daily');
+
     return (
         <div className="timeTracker">
             <div className="timeList">
                 <UserInfo />
-                <Time />
+                <Time onChangeTab={setActiveTab} />
             </div>
-            <div className="tracker">
-
+            <div className="tracker tabContainer">
+                <TabContent tab={activeTab} />
             </div>
-
         </div>
-    )
+    );
 }
+
+export default TimeTracker;
